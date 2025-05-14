@@ -4,13 +4,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import InterviewCard from '../components/InterviewCard'
 import { getCurrentUser} from "@/lib/actions/auth.actions" 
-import {getInterviewByUserId, getLatestInterviews } from '@/lib/actions/general.action'
+import {getInterviewsByUserId, getLatestInterviews } from '@/lib/actions/general.action'
 
 const Homepage = async () => {
   const user= await getCurrentUser();
 
   const [userInterviews,LatestInterviews]=await Promise.all([
-    user?.id ? getInterviewByUserId(user.id) : null,
+    user?.id ? getInterviewsByUserId(user.id) : null,
     user?.id ? getLatestInterviews({ userId: user.id }) : null
   ])
 
